@@ -1,0 +1,17 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "Service.Protos";
+
+package TaskService;
+
+message TaskResponse {
+    string guid = 1;
+    uint32 parts = 2;
+}
+
+service TaskServiceProto {
+    rpc OnList(google.protobuf.Empty) returns (stream TaskResponse);
+    rpc OnUpdate(google.protobuf.Empty) returns (stream TaskResponse);
+}

@@ -1,0 +1,34 @@
+query Franchises($first: Int!, $after: String = null) {
+  franchises(first: $first, after: $after) {
+    nodes {
+      id
+      name {
+        id
+        ru
+        en
+        kr
+        jp
+      }
+      categories {
+        id
+        name {
+          id
+          ru
+          en
+          kr
+          jp
+        }
+      }
+      tags {
+        id
+        name {
+          id
+          ru
+          en
+          kr
+          jp
+        }
+      }
+    }
+  }
+}

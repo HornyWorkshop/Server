@@ -1,0 +1,18 @@
+{
+  "name": "grabber",
+  "version": "1.0.0",
+  "description": "",
+  "exports": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsnd src/main.ts",
+    "dev_": "tsnd src/_main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.17.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  }
+}

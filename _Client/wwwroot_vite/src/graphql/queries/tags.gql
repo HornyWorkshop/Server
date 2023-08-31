@@ -1,0 +1,14 @@
+query Tags {
+  tags {
+    nodes {
+      id
+      name {
+        id
+        ru
+        en
+        kr
+        jp
+      }
+    }
+  }
+}

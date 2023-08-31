@@ -1,0 +1,14 @@
+query Categories {
+  categories {
+    nodes {
+      id
+      name {
+        id
+        ru
+        en
+        kr
+        jp
+      }
+    }
+  }
+}

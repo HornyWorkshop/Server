@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DiscordUploader": {
+      "commandName": "Project",
+      "commandLineArgs": "\"L:\\[ScrewThisNoise] Koikatsu BetterRepack RX1\\mods\\Sideloader Modpack - Animations\\[johnbbob_la_petite]Custom Animations.zipmod\""
+    }
+  }
+}

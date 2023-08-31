@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  workshopservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Discord=ODczNTE3NTM5NDgzODUyODEw.GA0ssD.sFiq7sANg0mXVAJ36N2GcvBTkeKUA8u2Y9qb_U
+      - TextChannels__Stash=839938598241697812
+      - AllowedHosts=*

@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Service.Protos";
+
+package InstallerService;
+
+message InstallRequest {
+    string guid = 1;
+}
+
+message InstallResponse {
+    bool result = 1;
+    string message = 2;
+}
+
+service InstallerServiceProto {
+    rpc OnGameInstallRequest(InstallRequest) returns (InstallResponse);
+    rpc OnModInstallRequest(InstallRequest) returns (InstallResponse);
+    rpc OnCardInstallRequest(InstallRequest) returns (InstallResponse);
+    rpc OnPluginInstallRequest(InstallRequest) returns (InstallResponse);
+}
