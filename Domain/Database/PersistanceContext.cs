@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HornyWorkshop.Domain.Database;
 
-public sealed class PersistanceContext(DbContextOptions dbContextOptions) : DbContext(dbContextOptions)
+public sealed class PersistenceContext(DbContextOptions dbContextOptions) : DbContext(dbContextOptions)
 {
     public DbSet<CardModel> Cards => Set<CardModel>();
     public DbSet<CardVersion> CardsVersions => Set<CardVersion>();
@@ -20,4 +20,12 @@ public sealed class PersistanceContext(DbContextOptions dbContextOptions) : DbCo
 
     public DbSet<PersonModel> Persons => Set<PersonModel>();
     public DbSet<FranchiseModel> Franchises => Set<FranchiseModel>();
+
+    //protected override void OnModelCreating(ModelBuilder builder)
+    //{
+    //    base.OnModelCreating(builder);
+
+    //    builder.Entity<CardModel>(e => e.HasMany(e => e.Games).WithMany(e => e.Cards));
+    //    builder.Entity<SceneModel>(e => e.HasMany(e => e.Games).WithMany(e => e.Scenes));
+    //}
 }

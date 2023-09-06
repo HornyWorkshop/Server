@@ -4,7 +4,7 @@ public sealed class CardModel
 {
     public int Id { get; init; }
 
-    public LocaleModel Locale { get; init; } = LocaleModel.Empty;
+    public LocaleModel Name { get; init; } = LocaleModel.Empty;
     public AuthorModel Author { get; init; } = AuthorModel.Empty;
 
     public ICollection<TagModel> Tags { get; init; } = new List<TagModel>();

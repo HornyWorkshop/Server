@@ -1,4 +1,5 @@
 using HornyWorkshop.Domain.Database;
+using HornyWorkshop.Server.Domain.Database.DataTypes;
 using HornyWorkshop.Services.WorkshopService;
 using HornyWorkshop.Services.WorkshopService.Api;
 using HornyWorkshop.Services.WorkshopService.BackgroundServices.TelegramServices;
@@ -19,13 +20,16 @@ gql.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = builder.Environmen
 gql.AddQueryType<ApiQuery>();
 gql.AddMutationType<ApiMutation>();
 gql.AddType<UploadType>();
-gql.RegisterDbContext<PersistanceContext>(DbContextKind.Pooled);
+gql.RegisterDbContext<PersistenceContext>(DbContextKind.Pooled);
 gql.AddProjections();
 gql.AddFiltering();
 gql.AddSorting();
 
+gql.BindRuntimeType<GameFeatures, IntType>();
+gql.AddTypeConverter<GameFeatures, int>(e => (int)e);
+
 // builder.Services.AddPooledDbContextFactory<PersistanceContext>(e => e.UseInMemoryDatabase("horny"));
-builder.Services.AddPooledDbContextFactory<PersistanceContext>(e => e.UseNpgsql("Database=horny;User Id=postgres;Host=db;Port=5432"));
+builder.Services.AddPooledDbContextFactory<PersistenceContext>(e => e.UseNpgsql("Database=horny;User Id=postgres;Host=db;Port=5432"));
 
 builder.Services.AddSingleton<Channels>();
 
@@ -56,6 +60,6 @@ app.MapGraphQL();
 app.MapBananaCakePop();
 
 
-await PersistanceHelper.Seed(app.Services);
+await PersistenceHelper.Seed(app.Services);
 
 await app.RunAsync();

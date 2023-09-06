@@ -10,12 +10,9 @@ namespace HornyWorkshop.Services.WorkshopService.Api;
 
 internal readonly record struct IconValue(IFile File, int Index);
 
-public sealed class ApiMutation
+public sealed class ApiMutation(IDbContextFactory<PersistenceContext> factory)
 {
-    private readonly IDbContextFactory<PersistanceContext> _factory;
     private static readonly int[] _sizes = new[] { 16, 24, 32, 48, 64, 96, 128, 192, 256 };
-
-    public ApiMutation(IDbContextFactory<PersistanceContext> factory) => _factory = factory;
 
     private static async ValueTask<bool> ValidateSize(IconValue icon, Dictionary<int, bool> sizes, CancellationToken ct)
     {
@@ -59,7 +56,7 @@ public sealed class ApiMutation
     [GraphQLDescription("Add new Game")]
     public async ValueTask<GameModel> CreateGame(CreateGameInput payload, CancellationToken ct)
     {
-        await using var db = await _factory.CreateDbContextAsync(ct);
+        await using var db = await factory.CreateDbContextAsync(ct);
 
         if (payload.Icons.Count == 9)
             throw new ApplicationException();
@@ -80,7 +77,7 @@ public sealed class ApiMutation
     [GraphQLDescription("Edit the Game")]
     public async ValueTask<GameModel> UpdateGame(EditGameInput payload, CancellationToken ct)
     {
-        await using var db = await _factory.CreateDbContextAsync(ct);
+        await using var db = await factory.CreateDbContextAsync(ct);
 
         var model = await db.Games.FirstAsync(ct);
 
